@@ -14,7 +14,7 @@ depends=('libxft' 'libltdl')
 host="http://downloads.hipchat.com"
 #NOTE: the Location header has "/./" in it, and curl doesn't seem to agree with that.
 location=$(curl --silent --head ${host}/linux/arch/hipchat-$CARCH.tar.xz | grep Location | cut -c 11- | tr --delete "\r" | sed "s/\/\.\//\//")
-source=(${source}${location})
+source=(${host}${location})
 
 if [ "$CARCH" == "x86_64" ]; then
   md5sums=('c73c73ab8e285e0e07c7b438aee55f4d')

@@ -11,10 +11,7 @@ url="https://www.hipchat.com/linux"
 license=('unknown')
 depends=('libxft' 'libltdl')
 
-host="http://downloads.hipchat.com"
-#NOTE: the Location header has "/./" in it, and curl doesn't seem to agree with that.
-location=$(curl --silent --head ${host}/linux/arch/hipchat-$CARCH.tar.xz | grep Location | cut -c 11- | tr --delete "\r" | sed "s/\/\.\//\//")
-source=(${host}${location})
+source=(http://downloads.hipchat.com/linux/arch/$CARCH/${pkgname}-${pkgver}-$CARCH.pkg.tar.xz)
 
 if [ "$CARCH" == "x86_64" ]; then
   md5sums=('f81e4615fa2f12210899297bcb48ce0e')
